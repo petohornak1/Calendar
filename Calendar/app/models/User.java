@@ -24,8 +24,8 @@ public class User extends Model {
 	public String firstName;
 
 	@Column(nullable = false)
-	public String lastName;
-
+	public String lastName; 
+ 
 	@Column(nullable = false)
 	public String birthday;
 

@@ -26,9 +26,9 @@ public class Application extends Controller {
 		}
 	}
   
-  public static Result signUp() {
+  public static Result signUp() { 
 		Form<User> filledForm = registrationForm.bindFromRequest();
-		User newUser = filledForm.get();		
+		User newUser = filledForm.get();	
 		if (!User.isEmailUnique(newUser.email)) {
 			return ok(index.render(signInForm, registrationForm));
 		}		
