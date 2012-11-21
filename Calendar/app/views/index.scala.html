@@ -4,7 +4,27 @@
 
 @main("Calendar") {
 
-<div class="header">
+	<div class="header">
+	<div class="header-left">
+		<img src="@routes.Assets.at("images/calendar.png")">
+	<h1>Calendar</h1>
+    </div>
+    <div class="header-right">
+		@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	  
+    	 
+    	 	<input type="text" class="input-medium" id="email" name="email" placeholder="Email">
+			<input type="password" class="input-medium" id="password" name="password" placeholder="Password">
+		 	<input type="submit" class="btn btn-primary" value="Sign in"> 
+		 	    
+    	
+    }    
+    </div>
+	</div>
+
+
+    
+
+  <!--<div class="header">
 	<img src="@routes.Assets.at("images/calendar.png")">
 	<h1>Calendar</h1>	
 	@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	  
@@ -21,7 +41,9 @@
 	<h2 class="red">Calendar</h2>
 	<h3>Organize your schedule and never forget another event</h3>
 	<h4>With this calendar, it's easy to keep track of life's important events all in one place.</h4> 
-
+    <div class="alert alert-error">
+    TA SOSKE
+    </div>
 </div>
 
 <div class="right">    
@@ -100,6 +122,6 @@
 		</div> 	
 		  
     }
-</div>
+</div>-->
 
 }

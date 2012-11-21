@@ -44,31 +44,29 @@ h4 {
 }
 div.header
 {
-position:fixed;
-top:0px;
-left:0px;
-right:0px;
-width:remainder;
+position:relative;
+padding:10px 100px;
 height:70px;
 background-color:#f1f1f1; 
-padding:10px; 
-padding-left:200px;
-padding-right:200px;
 border: 1px solid #e5e5e5;
 }
-p.right
+div.header-left
 {
-position:absolute;
-right:0px;
-padding-right:200px;
+float: left;
+width:300px;
+}
+div.header-right
+{
+float: right;
+width:600px;
 line-height: 70px;
 }
 div.left {
 position:absolute;
 top:100px; 
-width:750px; 
+width:550px; 
 padding:10px; 
-padding-left:200px;
+padding-left:15%;
 }
 
 div.right
