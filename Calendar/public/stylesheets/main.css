@@ -42,42 +42,40 @@ h4 {
     line-height: 100px;
     margin: 0 0 .46em;    
 }
-div.header
-{
+div.header {
 position:relative;
-padding:10px 100px;
-height:70px;
+height:90px;
+min-width:980px;
 background-color:#f1f1f1; 
 border: 1px solid #e5e5e5;
 }
-div.header-left
-{
-float: left;
-width:300px;
+div.header-container {
+margin: 0px auto;
+padding-top:10px;
+padding-bottom:10px;
+width:980px;
 }
-div.header-right
-{
+div.header-right {
 float: right;
-width:600px;
-line-height: 70px;
+line-height:70px;
 }
-div.left {
-position:absolute;
-top:100px; 
-width:550px; 
-padding:10px; 
-padding-left:15%;
+div.content {
+position:relative;
+min-width:980px;
 }
-
-div.right
-{
-position:absolute;
-top:100px;
-left:750px;
-padding:10px; 
-padding-right:200px;  
+div.content-container {
+margin: 0px auto;
+padding-top:10px;
+padding-bottom:10px;
+width:980px;
 }
-img
+div.content-left {
+float: left;
+}
+div.content-right {
+float: right;
+}
+img.logo
 {
 height:70px;
 width:auto;

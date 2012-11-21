@@ -3,125 +3,104 @@
 @import helper.twitterBootstrap._ 
 
 @main("Calendar") {
-
 	<div class="header">
-	<div class="header-left">
-		<img src="@routes.Assets.at("images/calendar.png")">
-	<h1>Calendar</h1>
-    </div>
-    <div class="header-right">
-		@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	  
-    	 
-    	 	<input type="text" class="input-medium" id="email" name="email" placeholder="Email">
-			<input type="password" class="input-medium" id="password" name="password" placeholder="Password">
-		 	<input type="submit" class="btn btn-primary" value="Sign in"> 
-		 	    
-    	
-    }    
-    </div>
+		<div class="header-container">
+			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
+			<h1>Calendar</h1>
+    			<div class="header-right">
+					@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	      	 
+    	 			<input type="text" class="input-medium" id="email" name="email" placeholder="Email">
+					<input type="password" class="input-medium" id="password" name="password" placeholder="Password">
+		 			<input type="submit" class="btn btn-primary" value="Sign in"> 		 	        	
+    				} 
+    			</div>   
+    	</div>
 	</div>
 
-
-    
-
-  <!--<div class="header">
-	<img src="@routes.Assets.at("images/calendar.png")">
-	<h1>Calendar</h1>	
-	@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	  
-    	 <p class="right">
-    	 	<input type="text" id="email" name="email" placeholder="Email">
-			<input type="password" id="password" name="password" placeholder="Password">
-		 	<input type="submit" class="btn btn-primary" value="Sign in"> 
-		 	    
-    	</p>
-    }
-</div>
-
-<div class="left">
-	<h2 class="red">Calendar</h2>
-	<h3>Organize your schedule and never forget another event</h3>
-	<h4>With this calendar, it's easy to keep track of life's important events all in one place.</h4> 
-    <div class="alert alert-error">
-    TA SOSKE
-    </div>
-</div>
-
-<div class="right">    
-	<h3 class="center">SIGN UP</h3>
-	@form(routes.Application.signUp(), 'name -> "signUpForm", 'onsubmit -> "return validateSignUpForm()", 'class -> "form-horizontal") {
-    <div class="control-group" id="email_field">
-    		<label class="control-label" for="email">
-    			<b>Your current email address:</b>
-    		</label>
-    		<div class="controls">
-        		<input type="text" id="email" name="email" placeholder="Your Email" onchange="isEmailUnique()">
-        		<span class="help-block" id="email_error"></span>
-        		
-   			</div>
-		</div>
-		
-		<div class="control-group" id="password_field">
-    		<label class="control-label" for="password">
-    			<b>Choose a password:</b>
-    		</label>
-    		<div class="controls">
-        		<input type="password" id="password" name="password" placeholder="Password" >
-        		<span class="help-block" id="password_error"></span>
-        		
-   			</div>
-		</div> 	
-		
-		<div class="control-group" id="rePassword_field">
-    		<label class="control-label" for="rePassword">
-    			<b>Re-enter password:</b>
-    		</label>
-    		<div class="controls">    		
-        		<input type="password" id="rePassword" name="rePassword" placeholder="Re-enter password" >
-        		<span class="help-block" id="rePassword_error"></span>     
-        		<span class="help-block" id="rePassword_help"></span>    		
-   			</div>
-		</div> 
-		
-		<div class="control-group" id="firstName_field">
-    		<label class="control-label" for="firstName">
-    			<b>First name:</b>
-    		</label>
-    		<div class="controls">
-        		<input type="text" id="firstName" name="firstName" placeholder="First Name" >
-        		<span class="help-block" id="firstName_error"></span> 
-        		<span class="help-block" id="firstName_help"></span>  
-   			</div>
-		</div>
-		
-		<div class="control-group" id="lastName_field">
-    		<label class="control-label" for="lastName">
-    			<b>Last name:</b>
-    		</label>
-    		<div class="controls">
-        		<input type="text" id="lastName" name="lastName" placeholder="Last Name" >
-        		<span class="help-block" id="lastName_error"></span> 
-        		<span class="help-block" id="lastName_help"></span> 
-   			</div>
-		</div>
-		
-		<div class="control-group" id="birthday_field">
-    		<label class="control-label" for="birthday">
-    			<b>Birthday:</b>
-    		</label>
-    		<div class="controls">
-        		<input type="text" id="birthday" name="birthday" placeholder="DD/MM/YYYY" >
-        		<span class="help-block" id="birthday_error"></span> 
-        		<span class="help-block" id="birthday_help"></span> 
-   			</div>
-		</div>  
-		
-		<div class="control-group">
-			<div class="controls">
-				<input type="submit" class="btn" value="Create my account"> 
+	<div class="content">
+		<div class="content-container">
+			<div class="content-left">
+				<h2 class="red">Calendar</h2>
+				<h3>Organize your schedule and never forget another event</h3>
+				<h4>With this calendar, it's easy to keep track of life's important events all in one place.</h4>
 			</div>
-		</div> 	
+			
+			<div class="content-right">
+				<h3 class="center">SIGN UP</h3>
+				@form(routes.Application.signUp(), 'name -> "signUpForm", 'onsubmit -> "return validateSignUpForm()", 'class -> "form-horizontal") {
+    				<div class="control-group" id="email_field">
+    					<label class="control-label" for="email">
+    						<b>Your current email address:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="email" name="email" placeholder="Your Email" onchange="isEmailUnique()">
+        					<span class="help-block" id="email_error"></span>        	
+   						</div>
+					</div>
+		
+					<div class="control-group" id="password_field">
+    					<label class="control-label" for="password">
+    						<b>Choose a password:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="password" id="password" name="password" placeholder="Password" >
+        					<span class="help-block" id="password_error"></span>        		
+   						</div>
+					</div> 	
+		
+					<div class="control-group" id="rePassword_field">
+    					<label class="control-label" for="rePassword">
+    						<b>Re-enter password:</b>
+    					</label>
+    					<div class="controls">    		
+        					<input type="password" id="rePassword" name="rePassword" placeholder="Re-enter password" >
+        					<span class="help-block" id="rePassword_error"></span>     
+        					<span class="help-block" id="rePassword_help"></span>    		
+   						</div>
+					</div> 
+		
+					<div class="control-group" id="firstName_field">
+    					<label class="control-label" for="firstName">
+    						<b>First name:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="firstName" name="firstName" placeholder="First Name" >
+        					<span class="help-block" id="firstName_error"></span> 
+        					<span class="help-block" id="firstName_help"></span>  
+   						</div>
+					</div>
+		
+					<div class="control-group" id="lastName_field">
+    					<label class="control-label" for="lastName">
+    						<b>Last name:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="lastName" name="lastName" placeholder="Last Name" >
+        					<span class="help-block" id="lastName_error"></span> 
+        					<span class="help-block" id="lastName_help"></span> 
+   						</div>
+					</div>
+		
+					<div class="control-group" id="birthday_field">
+    					<label class="control-label" for="birthday">
+    						<b>Birthday:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="birthday" name="birthday" placeholder="DD/MM/YYYY" >
+        					<span class="help-block" id="birthday_error"></span> 
+        					<span class="help-block" id="birthday_help"></span> 
+   						</div>
+					</div>  
+		
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn" value="Create my account"> 
+						</div>
+					</div> 	
 		  
     }
-</div>-->
+			</div>
+		</div>
+	</div>
 
 }
