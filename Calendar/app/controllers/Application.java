@@ -13,7 +13,7 @@ public class Application extends Controller {
 	static Form<User> registrationForm = form(User.class);
   
   public static Result index() {
-    return ok(index.render(signInForm, registrationForm));
+    return ok(index.render(signInForm, registrationForm, 0));	  	  
   }
   
   public static Result signIn() {
@@ -22,7 +22,7 @@ public class Application extends Controller {
 		if (User.signIn(signingInUser.email, signingInUser.password)) {
 			return ok(calendar.render("Vitajte"));
 		} else {			
-			return ok(index.render(signInForm, registrationForm));
+			return ok(signInError.render(signInForm, signingInUser.email));			
 		}
 	}
   
@@ -30,10 +30,10 @@ public class Application extends Controller {
 		Form<User> filledForm = registrationForm.bindFromRequest();
 		User newUser = filledForm.get();	
 		if (!User.isEmailUnique(newUser.email)) {
-			return ok(index.render(signInForm, registrationForm));
+			return ok(index.render(signInForm, registrationForm, 1));
 		}		
 		User.save(newUser);
-		return index();
+		return ok(signedUp.render());
 	}
   
 }

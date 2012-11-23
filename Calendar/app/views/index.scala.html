@@ -1,4 +1,4 @@
-@(signInForm: Form[User])(registrationForm: Form[User]) 
+@(signInForm: Form[User])(registrationForm: Form[User])(error: Integer) 
 @import helper._
 @import helper.twitterBootstrap._ 
 
@@ -8,12 +8,11 @@
 			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
 			<h1>Calendar</h1>
     			<div class="header-right">
-					@form(routes.Application.signIn(), 'name -> "signInForm", 'onsubmit -> "return validateSignInForm()", 'class -> "form-inline") {    	    	      	 
-    	 			<input type="text" class="input-medium" id="email" name="email" placeholder="Email">
-					<input type="password" class="input-medium" id="password" name="password" placeholder="Password">
-		 			<input type="submit" class="btn btn-primary" value="Sign in"> 		 	        	
-    				} 
-    			</div>   
+					@form(routes.Application.signIn(), 'name -> "signInForm", 'class -> "form-inline") {    	    	      	     	 			
+    	 			<input type="text" class="input-medium" name="email" placeholder="Email">										
+					<input type="password" class="input-medium" name="password" placeholder="Password">
+		 			<input type="submit" class="btn btn-primary" value="Sign in"> 		 				        	
+    				}     			   
     	</div>
 	</div>
 
@@ -99,8 +98,16 @@
 					</div> 	
 		  
     }
+    			<div class="" id="error"></div>    
 			</div>
 		</div>
 	</div>
+	
+	<script>
+		if(@error==1){
+		document.getElementById("error").setAttribute("class", "alert alert-error");
+		document.getElementById("error").innerHTML="Email address you entered belongs to an existing account.";
+		}
+	</script>
 
 }
