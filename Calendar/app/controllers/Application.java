@@ -27,8 +27,11 @@ static int lastDay;
   
   public static Result signIn() {
 		Form<User> filledForm = signInForm.bindFromRequest();
-		User signingInUser = filledForm.get();						
-		if (User.signIn(signingInUser.email, signingInUser.password)) {
+		User signingInUser = filledForm.get();	
+		if(signingInUser.email.isEmpty()) {
+			return ok(signInError.render(signInForm, signingInUser.email));	
+		}
+		if (User.signIn(signingInUser.email, signingInUser.password)) {			
 			return ok(calendar.render(month));
 		} else {			
 			return ok(signInError.render(signInForm, signingInUser.email));			
