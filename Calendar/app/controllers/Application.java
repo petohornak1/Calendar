@@ -12,7 +12,7 @@ import views.html.*;
 public class Application extends Controller {
 	
 	static Form<User> signInForm = form(User.class);
-	static Form<User> registrationForm = form(User.class);
+	static Form<User> registrationForm = form(User.class);	
 	
 	static Calendar cal;
     static int month;
@@ -31,8 +31,9 @@ static int lastDay;
 		if(signingInUser.email.isEmpty()) {
 			return ok(signInError.render(signInForm, signingInUser.email));	
 		}
-		if (User.signIn(signingInUser.email, signingInUser.password)) {			
-			return ok(calendar.render(month));
+		User user = User.signIn(signingInUser.email, signingInUser.password);
+		if (user != null) {			
+			return ok(calendar.render(user, month));
 		} else {			
 			return ok(signInError.render(signInForm, signingInUser.email));			
 		}

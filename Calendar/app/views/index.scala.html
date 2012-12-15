@@ -7,12 +7,13 @@
 		<div class="header-container">
 			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
 			<h1>Calendar</h1>
-    			<div class="header-right">
-					@form(routes.Application.signIn(), 'name -> "signInForm", 'class -> "form-inline") {    	    	      	     	 			
-    	 			<input type="text" class="input-medium" name="email" placeholder="Email">										
-					<input type="password" class="input-medium" name="password" placeholder="Password">
-		 			<input type="submit" class="btn btn-primary" value="Sign in"> 		 				        	
-    				}     			   
+    		<div class="header-right">
+				@form(routes.Application.signIn(), 'name -> "signInForm", 'class -> "form-inline") {    	    	      	     	 			
+    	 		<input type="text" class="input-medium" name="email" placeholder="Email">										
+				<input type="password" class="input-medium" name="password" placeholder="Password">
+		 		<input type="submit" class="btn btn-primary" value="Sign in"> 		 				        	
+    			} 
+    		</div>    			   
     	</div>
 	</div>
 
@@ -108,6 +109,11 @@
 		document.getElementById("error").setAttribute("class", "alert alert-error");
 		document.getElementById("error").innerHTML="Email address you entered belongs to an existing account.";
 		}
+		function preventBack(){
+			window.history.forward();
+		}
+		setTimeout("preventBack()", 0);
+		window.onunload=function(){null};
 	</script>
 
 }

@@ -1,4 +1,4 @@
-@(month: Int)
+@(user: User)(month: Int)
 @import helper._
 @import helper.twitterBootstrap._ 
 
@@ -7,7 +7,13 @@
 <div class="header">
 		<div class="header-container">
 			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
-			<h1>Calendar</h1>	
+			<h1>Calendar</h1>
+			<div class="header-right">
+					<b>@user.firstName&nbsp;@user.lastName</b>&nbsp;&nbsp;
+					<a href="/">
+		 				<input type="submit" class="btn" value="Sign out"> 
+		 			</a>		 				        	    				
+    		</div>  	
     	</div>
 	</div>
 
@@ -91,4 +97,12 @@
 </div>
 </div></div>
 </div>
+
+<script>		
+		function preventBack(){
+			window.history.forward();
+		}
+		setTimeout("preventBack()", 0);
+		window.onunload=function(){null};
+	</script>
 }

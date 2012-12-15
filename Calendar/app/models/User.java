@@ -28,6 +28,10 @@ public class User extends Model {
  
 	@Column(nullable = false)
 	public String birthday;
+	
+	public User getInstance(){
+		return this;
+	}
 
 	public static boolean isEmailUnique(String email) {
 		if (find.where().like("email", email).findUnique() == null) {
@@ -41,13 +45,8 @@ public class User extends Model {
 		user.save();
 	}
 
-	public static boolean signIn(String email, String password) {
-		User user = find.where().like("email", email)
-				.like("password", password).findUnique();
-		if (user == null) {
-			return false;
-		} else {
-			return true;
-		}
+	public static User signIn(String email, String password) {
+		return find.where().like("email", email)
+				.like("password", password).findUnique();				
 	}
 }
