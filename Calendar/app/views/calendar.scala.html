@@ -1,8 +1,9 @@
-@(user: User)(month: Int)
+@(user: User)(month: Int)(monthInYear: Int)
 @import helper._
 @import helper.twitterBootstrap._ 
 
 @main("Calendar") {
+
 
 <div class="header">
 		<div class="header-container">
@@ -16,93 +17,93 @@
     		</div>  	
     	</div>
 	</div>
+	
+
+
+	<div class"btn-group">
+		<button class="btn" onclick="">&larr;</button>
+		<button class="btn">@monthInYear</button>
+		<button class="btn">&rarr;</button>
+	</div>
+
 
 <div class="content">
 		<div class="content-container">
 			<div class="content-left">
-				<div class="btn-toolbar">
-					<div class="btn-group btn-group-vertical">
+
+		<div class="btn-toolbar left span4">
+		<div class="btn-group btn-group-vertical">		
 		<div class="btn-group">
-			<button class="btn"><span class="label label-info">Mo</span></button>
-			<button class="btn">26</button>
-			<button class="btn"> 3</button>
-			<button class="btn">10</button>
-			<button class="btn"> 17</button>
-			<button class="btn"> 24</button>
-			<button class="btn"> 31</button>
+			<button class="btn btn-info" type="button" data-toggle="modal" data-target="myModal" onclick="myModal">Mo</button>
+			<button class="btn">@Application.den(0)</button>
+			<button class="btn">@Application.den(7)</button>
+			<button class="btn">@Application.den(14)</button>
+			<button class="btn">@Application.den(21)</button>
+			<button class="btn">@Application.den(28)</button>
+			<button class="btn">@Application.den(35)</button>
 		</div>
 		<div class="btn-group">
-		<button class="btn"><span class="label label-info">Tu</span></button>
-			<button class="btn">27</button>
-			<button class="btn"> 4</button>
-			<button class="btn"> 11</button>
-			<button class="btn">18</button>
-			<button class="btn">25</button>
-			<button class="btn">1</button>
+		<button class="btn btn-info">Tu</button>
+			<button class="btn">@Application.den(1)</button>
+			<button class="btn">@Application.den(8)</button>
+			<button class="btn">@Application.den(15)</button>
+			<button class="btn">@Application.den(22)</button>
+			<button class="btn">@Application.den(29)</button>
+			<button class="btn">@Application.den(36)</button>
 			
 			
 		</div>
 		<div class="btn-group">
-		<button class="btn"><span class="label label-info">We</span></button>
-			<button class="btn">28</button>
-			<button class="btn">5</button>
-			<button class="btn">12</button>
-			<button class="btn">19</button>
-			<button class="btn">26</button>
-			<button class="btn">2</button>
+		<button class="btn btn-info">We</button>
+			<button class="btn">@Application.den(2)</button>
+			<button class="btn">@Application.den(9)</button>
+			<button class="btn">@Application.den(16)</button>
+			<button class="btn">@Application.den(23)</button>
+			<button class="btn">@Application.den(30)</button>
+			<button class="btn">@Application.den(37)</button>
 		
 		</div>		
 		<div class="btn-group">
-		<button class="btn"><span class="label label-info">Th</span></button>
-			<button class="btn">29</button>
-			<button class="btn">6</button>
-			<button class="btn">13</button>
-			<button class="btn">20</button>
-			<button class="btn">27</button>
-			<button class="btn">3</button>
+		<button class="btn btn-info">Th</button>
+			<button class="btn">@Application.den(3)</button>
+			<button class="btn">@Application.den(10)</button>
+			<button class="btn">@Application.den(17)</button>
+			<button class="btn">@Application.den(24)</button>
+			<button class="btn">@Application.den(31)</button>
+			<button class="btn">@Application.den(38)</button>
 			
 			
 		</div>
 		<div class="btn-group">
-		<button class="btn"><span class="label label-info">Fr</span></button>
-			<button class="btn">30</button>
-			<button class="btn">7</button>
-			<button class="btn">14</button>
-			<button class="btn">21</button>
-			<button class="btn">28</button>
-			<button class="btn">4  </button>
+		<button class="btn btn-info">Fr</button>
+			<button class="btn">@Application.den(4)</button>
+			<button class="btn">@Application.den(11)</button>
+			<button class="btn">@Application.den(18)</button>
+			<button class="btn">@Application.den(25)</button>
+			<button class="btn">@Application.den(32)</button>
+			<button class="btn">@Application.den(39)</button>
 			
 			
 		</div>
 		<div class="btn-group">
-		<button class="btn"><span class="label label-important">Sa</span></button>
-			<button class="btn">1</button>
-			<button class="btn">8</button>
-			<button class="btn">15</button>
-			<button class="btn">  22</button>
-			<button class="btn">  29</button>
-			<button class="btn">5 </button>
+		<button class="btn btn-danger">Sa</button>
+			<button class="btn">@Application.den(5)</button>
+			<button class="btn">@Application.den(12)</button>
+			<button class="btn">@Application.den(19)</button>
+			<button class="btn">@Application.den(26)</button>
+			<button class="btn">@Application.den(33)</button>
+			<button class="btn">@Application.den(40)</button>
 			
 		</div>
 		<div class="btn-group">
-		<button class="btn"><span class="label label-important">Su</span></button>
-			<button class="btn">2</button>
-			<button class="btn">9</button>
-			<button class="btn">16</button>
-			<button class="btn"> 23 </button>
-			<button class="btn"> 30 </button>
-			<button class="btn">6</button>
+		<button class="btn btn-danger">Su</button>
+			<button class="btn">@Application.den(6)</button>
+			<button class="btn">@Application.den(13)</button>
+			<button class="btn">@Application.den(20)</button>
+			<button class="btn">@Application.den(27) </button>
+			<button class="btn">@Application.den(34) </button>
+			<button class="btn">@Application.den(41)</button>
 		</div>
 	</div>
-</div>
-</div></div>
-</div>
-
-<script>		
-		function preventBack(){
-			window.history.forward();
-		}
-		setTimeout("preventBack()", 0);
-		window.onunload=function(){null};
-	</script>
+</div></div></div></div>
 }

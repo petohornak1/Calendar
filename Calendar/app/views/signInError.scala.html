@@ -12,7 +12,9 @@
 		
 	<div class="alert-center">
 		<div class="alert alert-error">
-			<div class="alert-header">The username or password you entered is incorrect.</div>
+			<div class="alert-header">The username or password you entered is incorrect.
+				<a href="/identify">Forgot your password?</a>	
+			</div>
 			<div class="alert-content">
    			@form(routes.Application.signIn(), 'name -> "signInForm", 'class -> "form-horizontal") {    	    	      	     	 			
     	 			<div class="control-group">
@@ -31,11 +33,21 @@
 
 					<div class="control-group">
 						<div class="controls">
-							<input type="submit" class="btn btn-primary" value="Sign in"> 
+							<input type="submit" class="btn btn-primary" value="Sign in"> 						
 						</div>
-					</div>	 				        	
+					</div>
+						 				        	
     		} 
     		</div> 
     	</div>
     </div>
+    
+    <script>		
+		function preventBack(){
+			window.history.forward();
+		}
+		setTimeout("preventBack()", 0);
+		window.onunload=function(){null};
+	</script>
+    
 }

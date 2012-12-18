@@ -49,4 +49,8 @@ public class User extends Model {
 		return find.where().like("email", email)
 				.like("password", password).findUnique();				
 	}
+	
+	public static User sendPass(String email) {
+		return find.where().like("email", email).findUnique();				
+	}
 }

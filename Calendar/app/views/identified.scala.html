@@ -1,0 +1,26 @@
+@(identified: Integer)(email: String)
+@import helper._
+@import helper.twitterBootstrap._ 
+
+@main("Calendar") {	
+	<div class="header">
+		<div class="header-container">
+			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
+			<h1>Calendar</h1>	
+    	</div>
+	</div>
+
+	<div class="alert-center">
+	@if(identified == 0){
+		<div class="alert alert-error">
+   			The username you entered does not belong to any account. Click
+   			<a href="/identify">here</a> to try again.
+    	</div>    
+	} else {	
+		<div class="alert alert-success">
+   			Your password has been successfully sent to <b>@email</b>. Click
+   			<a href="/">here</a> to Log on.
+    	</div>    
+    }
+    </div>
+}

@@ -1,0 +1,36 @@
+@(identifyForm: Form[User])
+@import helper._
+@import helper.twitterBootstrap._ 
+
+@main("Calendar") {	
+	<div class="header">
+		<div class="header-container">
+			<img class="logo" src="@routes.Assets.at("images/calendar.png")">
+			<h1>Calendar</h1>	
+    	</div>
+	</div>
+		
+	<div class="alert-center">
+		<div class="alert alert-info">
+			<div class="alert-header">Identify Your Account.</div>
+			<div class="alert-content">
+   			@form(routes.Application.sendPass(), 'name -> "identifyForm", 'class -> "form-horizontal") {    	    	      	     	 			
+    	 			<div class="control-group">
+						<label class="control-label" for="inputEmail">Email</label>
+						<div class="controls">
+							<input type="text" name="email" placeholder="Email">
+						</div>
+					</div>					
+
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn btn-primary" value="Send password"> 						
+						</div>
+					</div>
+						 				        	
+    		} 
+    		</div> 
+    	</div>
+    </div>       
+    
+}
