@@ -1,6 +1,10 @@
 package models;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.persistence.*;
@@ -48,10 +52,19 @@ public class Event extends Model {
 		find.ref(id).delete();
 	}
 	
-	public static List<Event> getUserEvents(Long userId){
+	public static void update(Long id, Event event) {			
+		event.update(id);		
+	}
+	
+	public static Event getEvent(Long id) {						
+		return find.ref(id);		
+	}
+	
+	public static List<Event> getUserEvents(Long userId) {
 		List<Event> userEvents = new ArrayList<Event>();
-		for(Event e: all()){
-			if(e.userId==userId) userEvents.add(e);
+		for (Event e : all()) {
+			if (e.userId == userId)
+				userEvents.add(e);
 		}
 		return userEvents;
 	}

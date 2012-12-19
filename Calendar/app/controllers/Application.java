@@ -72,7 +72,7 @@ public class Application extends Controller {
 	  
 	  public static Result events() {
 			if(logged == null) return redirect(routes.Application.index());
-			return ok(events.render(logged, eventForm));
+			return ok(events.render(logged, Event.getUserEvents(logged.id)));
 		}
 	  
 	  public static Result signUp() { 
@@ -131,5 +131,17 @@ public class Application extends Controller {
 			event.done = false;
 			Event.create(event);
 			return redirect(routes.Application.logged());			
+		}
+	  
+	  public static Result updateEvent(Long id) {
+			Event event = Event.getEvent(id);
+			event.done = !event.done;
+			Event.update(id, event);
+			return redirect(routes.Application.events());			
+		}
+	  
+	  public static Result deleteEvent(Long id) {
+			Event.delete(id);
+			return redirect(routes.Application.events());			
 		}
 }

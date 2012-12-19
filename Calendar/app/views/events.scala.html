@@ -1,4 +1,4 @@
-@(user: User)(eventForm: Form[Event])
+@(user: User)(events: List[Event])
 @import helper._
 @import helper.twitterBootstrap._ 
 
@@ -13,8 +13,53 @@
      		</div>
      	</div>
 	</div>
-	
-	THIS IS EVENTS
+		
+	<div class="content">
+		<div class="content-container">		
+		    <table class="table table-bordered">
+    			<caption><h3>List of your events</h3> 
+    				<form>
+						<input type="submit" class="btn btn-primary pull-right" value="Print" onClick="window.print()"><br>
+					</form>
+				</caption>
+    			<thead>
+    				<tr>
+    					<th>Event</th>
+    					<th>Event description</th>
+    					<th>Where</th>
+    					<th>Done</th>
+    					<th>Date</th>
+    					<th>Time</th>
+    					<th></th>
+    					<th></th>
+   					</tr>
+    			</thead>
+    			<tbody>        
+					@for(event <- events) {
+            			<tr>
+    						<td>@event.eventName</td>
+    						<td>@event.description</td>
+    						<td>@event.place</td>
+    						<td>@if(event.done){
+    							<img src="@routes.Assets.at("images/ok.gif")">
+    							} else {
+    							<img src="@routes.Assets.at("images/cancel.gif")">
+    							}</td>
+    						<td>@event.date</td>
+    						<td>@event.time</td>
+    						
+    						@if(event.done){
+    						<td>@form(routes.Application.updateEvent(event.id)) {<input type="submit" value="Undone" class="btn btn-warning"/>}</td>
+    						} else {
+    						<td>@form(routes.Application.updateEvent(event.id)) {<input type="submit" value="Done" class="btn btn-success"/>}</td>
+    						}    						    						    						
+    						<td>@form(routes.Application.deleteEvent(event.id)) {<input type="submit" value="Delete" class="btn btn-danger"/>}</td>
+    					</tr>
+        			}
+				</tbody>
+   	 		</table>
+		</div>
+	</div>
 
     <div class="navbar navbar-fixed-bottom">
 		  <div class="navbar-inner">
@@ -34,26 +79,7 @@
 		  </div><!-- /navbar-inner -->
 		</div><!-- /navbar -->
 		
-		<script>
-		
-		window.onload = function(){			
-			
-			g_globalObject = new JsDatePick({
-				useMode:1,
-				isStripped:true,
-				target:"div3_example"				
-			});		
-			
-			g_globalObject.setOnSelectedDelegate(function(){
-				var obj = g_globalObject.getSelectedDay();
-				document.forms["eventForm"]["date"].value = obj.day + "/" + obj.month + "/" + obj.year;				
-				document.forms["eventForm"]["time"].value = "00:00";
-			});										
-			
-		};
-		
-		
-		
+		<script>		
 		function preventBack(){
 			window.history.forward();
 		}
