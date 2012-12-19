@@ -117,6 +117,64 @@ function validateChpsForm() {
 	return ok;
 }
 
+function validateEventForm() {	
+	
+	document.getElementById("eventName_field").setAttribute("class", "control-group");
+	document.getElementById("eventName_error").innerHTML="";
+	document.getElementById("date_field").setAttribute("class", "control-group");
+	document.getElementById("date_error").innerHTML="";
+	document.getElementById("time_field").setAttribute("class", "control-group");
+	document.getElementById("time_error").innerHTML="";		
+	
+	var ok = true;
+	
+	var event = document.forms["eventForm"]["eventName"].value;
+	var date = document.forms["eventForm"]["date"].value;
+	var time = document.forms["eventForm"]["time"].value;			
+	
+	if(isBlankSignUpField(event)) {
+		document.getElementById("eventName_field").setAttribute("class", "");
+		document.getElementById("eventName_error").innerHTML="";
+	} else {
+		document.getElementById("eventName_field").setAttribute("class", "control-group error");
+		document.getElementById("eventName_error").innerHTML="Required field, cannot be left blank";
+		ok = false;
+	}
+	
+	if(isBlankSignUpField(date)) {
+		document.getElementById("date_field").setAttribute("class", "");
+		document.getElementById("date_error").innerHTML="";
+	} else {
+		document.getElementById("date_field").setAttribute("class", "control-group error");
+		document.getElementById("date_error").innerHTML="Required field, cannot be left blank";
+		ok = false;
+	}
+	
+	if(isBlankSignUpField(time)) {
+		document.getElementById("time_field").setAttribute("class", "");
+		document.getElementById("time_error").innerHTML="";
+	} else {
+		document.getElementById("time_field").setAttribute("class", "control-group error");
+		document.getElementById("time_error").innerHTML="Required field, cannot be left blank";
+		ok = false;
+	}
+	if(!ok) return false;
+	
+	if(!isValidDate2(date)){
+		document.getElementById("date_field").setAttribute("class", "control-group error");
+		document.getElementById("date_error").innerHTML="Please enter a valid date.";
+		ok = false;
+	} 
+	var timePattern = /^([0-1]?[0-9]|2[0-3]):([0-5][0-9])(:[0-5][0-9])?$/;
+	if(!timePattern.test(time)){
+		document.getElementById("time_field").setAttribute("class", "control-group error");
+		document.getElementById("time_error").innerHTML="Please enter a valid time.";	
+		ok = false;	
+	} 
+	if(ok) window.alert("Event successfully added!");
+	return ok;
+}
+
 function isBlankSignUpField(field) {	
 	if(field == null || field == ""){			
 		return false;
@@ -145,5 +203,26 @@ function isValidDate(date) {
     if(aoDate > (new Date().setFullYear(new Date().getFullYear()-10)) || aoDate < (new Date().setFullYear(new Date().getFullYear()-100))) {
     	return false;
     }
+    return true;
+}
+
+function isValidDate2(date) {	
+    var aoDate, ms, month, day, year;     
+    aoDate = date.split("/");     
+    if (aoDate.length !== 3) {    	
+        return false;
+    }  
+    
+    day = aoDate[0] - 0;
+    month = aoDate[1] - 1;     
+    year = aoDate[2] - 0;       
+    ms = (new Date(year, month, day)).getTime();    
+    aoDate = new Date();
+    aoDate.setTime(ms);    
+    if (aoDate.getFullYear() !== year ||
+        aoDate.getMonth() !== month ||
+        aoDate.getDate() !== day) {
+        return false;
+    }    
     return true;
 }

@@ -1,4 +1,4 @@
-@(user: User)(month: Int)(monthInYear: Int)
+@(user: User)(eventForm: Form[Event])
 @import helper._
 @import helper.twitterBootstrap._ 
 
@@ -17,8 +17,74 @@
 	<div class="content">
 		<div class="content-container">
 			<div class="content-left">
- 	 		<h3 class="center">Account Settings</h3> 
- 	 		</div></div></div>
+ 	 			<div id="div3_example" style="margin:10px 0 30px 0; width:205px; height:230px;"></div>
+ 	 		</div>
+ 	 		<div class="content-right">
+ 	 		
+ 	 		@form(routes.Application.newEvent(user.id), 'name -> "eventForm", 'onsubmit -> "return validateEventForm()", 'class -> "form-horizontal") {
+    				<div class="control-group" id="eventName_field">
+    					<label class="control-label" for="eventName">
+    						<b>Event name:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="eventName" name="eventName">
+        					<span class="help-block" id="eventName_error"></span>        	
+   						</div>
+					</div>
+		
+					<div class="control-group" id="description_field">
+    					<label class="control-label" for="description">
+    						<b>Description:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="description" name="description">
+        					<span class="help-block" id="description_error"></span>        		
+   						</div>
+					</div> 	
+		
+					<div class="control-group" id="place_field">
+    					<label class="control-label" for="place">
+    						<b>Where:</b>
+    					</label>
+    					<div class="controls">    		
+        					<input type="text" id="place" name="place">
+        					<span class="help-block" id="place_error"></span>     
+        					<span class="help-block" id="place_help"></span>    		
+   						</div>
+					</div>
+					
+					<div class="control-group" id="date_field">
+    					<label class="control-label" for="date">
+    						<b>Date:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="date" name="date" placeholder="DD/MM/YYYY">
+        					<span class="help-block" id="date_error"></span> 
+        					<span class="help-block" id="date_help"></span>  
+   						</div>
+					</div> 
+		
+					<div class="control-group" id="time_field">
+    					<label class="control-label" for="time">
+    						<b>Time:</b>
+    					</label>
+    					<div class="controls">
+        					<input type="text" id="time" name="time" placeholder="HH:MM">
+        					<span class="help-block" id="time_error"></span> 
+        					<span class="help-block" id="time_help"></span>  
+   						</div>
+					</div>						 
+		
+					<div class="control-group">
+						<div class="controls">
+							<input type="submit" class="btn" value="Add event"> 
+						</div>
+					</div> 	
+		  
+    }
+ 	 		</div>
+ 	 	</div>
+ 	 </div>
 
     <div class="navbar navbar-fixed-bottom">
 		  <div class="navbar-inner">
@@ -38,7 +104,26 @@
 		  </div><!-- /navbar-inner -->
 		</div><!-- /navbar -->
 		
-		<script>		
+		<script>
+		
+		window.onload = function(){			
+			
+			g_globalObject = new JsDatePick({
+				useMode:1,
+				isStripped:true,
+				target:"div3_example"				
+			});		
+			
+			g_globalObject.setOnSelectedDelegate(function(){
+				var obj = g_globalObject.getSelectedDay();
+				document.forms["eventForm"]["date"].value = obj.day + "/" + obj.month + "/" + obj.year;				
+				document.forms["eventForm"]["time"].value = "00:00";
+			});										
+			
+		};
+		
+		
+		
 		function preventBack(){
 			window.history.forward();
 		}
