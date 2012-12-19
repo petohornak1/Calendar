@@ -70,6 +70,11 @@ public class Application extends Controller {
 			return ok(account.render(logged, chasForm, chpsForm));
 		}
 	  
+	  public static Result events() {
+			if(logged == null) return redirect(routes.Application.index());
+			return ok(events.render(logged, eventForm));
+		}
+	  
 	  public static Result signUp() { 
 			Form<User> filledForm = registrationForm.bindFromRequest();
 			User newUser = filledForm.get();	
