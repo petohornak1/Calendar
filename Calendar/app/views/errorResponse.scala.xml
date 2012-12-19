@@ -1,0 +1,7 @@
+@(email: String)(password: String)
+
+<eventlist>
+	<user>@email</user>
+	<password>@password</password>
+	<errorMessage>The username or password you entered is incorrect.</errorMessage>	
+</eventlist>

@@ -1,0 +1,18 @@
+@(user: User)(events: List[Event])
+
+<eventlist>
+	<user>@user.email</user>
+	<password>@user.password</password>
+	<events>
+	@for(event <- events) {
+            <event>
+            	<eventname>@event.eventName</eventname>
+            	<eventdesc>@event.description</eventdesc>
+            	<eventplace>@event.place</eventplace>
+            	<eventplace>@event.done</eventplace>
+            	<eventdate>@event.date</eventdate>
+            	<eventtime>@event.time</eventtime>                                                
+            </event>
+        }
+    </events>
+</eventlist>

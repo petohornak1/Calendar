@@ -9,6 +9,7 @@ import play.data.Form;
 import play.mvc.*;
 
 import views.html.*;
+import views.xml.*;
 
 
 import java.text.*;
@@ -24,6 +25,15 @@ public class Application extends Controller {
 	
 	static User logged;			
 
+	public static Result ws(String email, String password) {
+		User user = User.signIn(email, password);
+		if(user == null){
+			return ok(errorResponse.render(email, password));
+		} else {
+			return ok(okResponse.render(user, Event.getUserEvents(user.id)));
+		}
+    }
+	
 	public static Result index() {		
 	    return ok(index.render(signInForm, registrationForm, 0));			
 	  }
