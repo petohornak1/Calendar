@@ -19,6 +19,9 @@ public class User extends Model {
 
 	@Transient
 	public String rePassword;
+	
+	@Transient
+	public String oldPassword;
 
 	@Column(nullable = false)
 	public String firstName;
@@ -27,11 +30,7 @@ public class User extends Model {
 	public String lastName; 
  
 	@Column(nullable = false)
-	public String birthday;
-	
-	public User getInstance(){
-		return this;
-	}
+	public String birthday;		
 
 	public static boolean isEmailUnique(String email) {
 		if (find.where().like("email", email).findUnique() == null) {
@@ -44,6 +43,10 @@ public class User extends Model {
 	public static void save(User user) {
 		user.save();
 	}
+	
+	public static void update(Long id, User user) {						
+		user.update(id);		
+	}
 
 	public static User signIn(String email, String password) {
 		return find.where().like("email", email)
@@ -52,5 +55,5 @@ public class User extends Model {
 	
 	public static User sendPass(String email) {
 		return find.where().like("email", email).findUnique();				
-	}
+	}	
 }

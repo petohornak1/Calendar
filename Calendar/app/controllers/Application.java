@@ -22,6 +22,10 @@ public class Application extends Controller {
 	static Form<User> signInForm = form(User.class);
 	static Form<User> registrationForm = form(User.class);
 	static Form<User> identifyForm = form(User.class);
+	static Form<User> chasForm = form(User.class);
+	static Form<User> chpsForm = form(User.class);
+	
+	static User logged;
 	
 	static Calendar cal;
     static int month;
@@ -31,11 +35,9 @@ public class Application extends Controller {
 	static int monthInYear;
 	static int year;
 
-
-
 	public static Result index() {
 		Application.cal();
-	    return ok(index.render(signInForm, registrationForm, 0));	 		
+	    return ok(index.render(signInForm, registrationForm, 0));			
 	  }
 	
 	public static Result identify() {		
@@ -48,12 +50,26 @@ public class Application extends Controller {
 			if(signingInUser.email.isEmpty()) {
 				return ok(signInError.render(signInForm, signingInUser.email));	
 			}
-			User user = User.signIn(signingInUser.email, signingInUser.password);
-			if (user != null) {			
-				return ok(calendar.render(user, month, monthInYear));
-			} else {			
-				return ok(signInError.render(signInForm, signingInUser.email));			
+			logged = User.signIn(signingInUser.email, signingInUser.password);
+			return logged();
+		}
+	  
+	  public static Result signOut() {
+			logged = null;
+			return redirect(routes.Application.index());
+		}
+	  
+	  public static Result logged() {
+		  if (logged != null) {			
+				return ok(calendar.render(logged, month, monthInYear));
+			} else {				
+				return ok(signInError.render(signInForm, ""));			
 			}
+	  }
+	  
+	  public static Result account() {
+			if(logged == null) return redirect(routes.Application.index());
+			return ok(account.render(logged, chasForm, chpsForm));
 		}
 	  
 	  public static Result signUp() { 
@@ -64,6 +80,29 @@ public class Application extends Controller {
 			}		
 			User.save(newUser);
 			return ok(signedUp.render());
+		}
+	  
+	  public static Result changeAccount(Long id, String email, String pass) { 		  
+		    Form<User> filledForm = chasForm.bindFromRequest();		    
+			User changedUser = filledForm.get(); 
+			changedUser.email = email;
+			changedUser.password = pass;
+			logged = changedUser;
+			User.update(id, changedUser);			
+			return redirect(routes.Application.logged());
+		}
+	  
+	  public static Result changePass(Long id, String email, String firstName, String lastName, String birthday) { 			
+		    Form<User> filledForm = chpsForm.bindFromRequest();		    
+			User changedUser = filledForm.get(); 
+			if(!logged.password.equals(changedUser.oldPassword)) return ok(changePassError.render());
+			changedUser.email = email;	
+			changedUser.firstName = firstName;
+			changedUser.lastName = lastName;
+			changedUser.birthday = birthday;
+			logged = changedUser;
+			User.update(id, changedUser);			
+			return redirect(routes.Application.logged());
 		}
 	  
 	  public static Result sendPass() { 

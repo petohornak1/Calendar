@@ -4,10 +4,15 @@
 
 # Home page
 GET     /                           controllers.Application.index()
+GET 	/logged						controllers.Application.logged()
 GET 	/identify					controllers.Application.identify()
-POST    /							controllers.Application.signIn()
+GET 	/account					controllers.Application.account()
+POST    /logged						controllers.Application.signIn()
 POST    /signedUp					controllers.Application.signUp()
+POST    /signedOut					controllers.Application.signOut()
 POST	/identified					controllers.Application.sendPass()
+POST	/chas/						controllers.Application.changeAccount(id: Long, email: String, pass: String)
+POST	/chps/						controllers.Application.changePass(id: Long, email: String, firstName: String, lastName: String, birthday: String)
 
 
 # Map static resources from the /public folder to the /assets URL path

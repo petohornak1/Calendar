@@ -55,6 +55,68 @@ function validateSignUpForm() {
 	return ok;
 }
 
+function validateChasForm() {			
+	
+	var ok = true;
+	
+	var firstName = document.forms["chasForm"]["firstName"].value;
+	var lastName = document.forms["chasForm"]["lastName"].value;
+	var birthday = document.forms["chasForm"]["birthday"].value;
+	
+	if(!(isBlankSignUpField(firstName) && isBlankSignUpField(lastName) && isBlankSignUpField(birthday))){		
+		document.getElementById("error_chas").setAttribute("class", "alert alert-error");
+		document.getElementById("error_chas").innerHTML="You must fill in all of the fields.";
+		return false;
+	} else {
+		document.getElementById("error_chas").setAttribute("class", "");
+		document.getElementById("error_chas").innerHTML="";
+	}
+	
+	if(!isValidDate(birthday)){
+		document.getElementById("birthday_field_chas").setAttribute("class", "control-group error");
+		document.getElementById("birthday_error_chas").innerHTML="Please enter a valid date.";
+		ok = false;
+	} 
+	return ok;
+}
+
+function validateChpsForm() {	
+	
+	document.getElementById("password_field_chps").setAttribute("class", "control-group");
+	document.getElementById("password_error_chps").innerHTML="";
+	document.getElementById("rePassword_field_chps").setAttribute("class", "control-group");
+	document.getElementById("rePassword_error_chps").innerHTML="";
+	
+	var ok = true;
+	
+	var oldPassword = document.forms["chpsForm"]["oldPassword"].value;
+	var password = document.forms["chpsForm"]["password"].value;
+	var rePassword = document.forms["chpsForm"]["rePassword"].value;
+	
+	if(!(isBlankSignUpField(oldPassword) && isBlankSignUpField(password) && isBlankSignUpField(rePassword))){		
+		document.getElementById("error_chps").setAttribute("class", "alert alert-error");
+		document.getElementById("error_chps").innerHTML="You must fill in all of the fields.";
+		return false;
+	} else {
+		document.getElementById("error_chps").setAttribute("class", "");
+		document.getElementById("error_chps").innerHTML="";
+	}		
+	
+	var passwordPattern = /(?=.*[a-zA-Z0-9@#$%^&+=]).{6,}/;	
+	if(!passwordPattern.test(password)){
+		document.getElementById("password_field_chps").setAttribute("class", "control-group error");
+		document.getElementById("password_error_chps").innerHTML="Minimum of 6 characters in length.";	
+		ok = false;	
+	} 
+	
+	if(password != rePassword){	
+		document.getElementById("rePassword_field_chps").setAttribute("class", "control-group error");
+		document.getElementById("rePassword_error_chps").innerHTML="Passwords must match.";
+		ok = false;			
+	}	
+	return ok;
+}
+
 function isBlankSignUpField(field) {	
 	if(field == null || field == ""){			
 		return false;
